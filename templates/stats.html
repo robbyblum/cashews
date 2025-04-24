@@ -1,13 +1,13 @@
 <!doctype html>
-<html>
+<html data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/date-fns@3.6.0/cdn.min.js"></script>
-
-    <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-2.2.2/datatables.min.css" rel="stylesheet" integrity="sha384-EMec0P+bM7BzPRifh0Da2z4pEzNGzbb1pmzxZ/E0fZjPky+56QS2Y+x6U/00/L2z" crossorigin="anonymous"> 
-    <script src="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-2.2.2/datatables.min.js" integrity="sha384-h+dgoYlXhgp1Rdr2BQORgRZ8uTV8KHpMEDxsAXD5RMRvytPCeeiubqmZx5ZIewmp" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.1/css/bulma.min.css" rel="stylesheet" integrity="sha384-u1DpPo/VC1cCewPdLA1ujElPdm1c/ZVa5MNAV6930PlrYYXhoKH/+hui6tE7szxu" crossorigin="anonymous">
+    <link href="https://cdn.datatables.net/v/bm/jq-3.7.0/dt-2.2.2/datatables.min.css" rel="stylesheet" integrity="sha384-NQR9ysESFMRrrks4rwDgTlpUgpKPftZV/S48q+tang2oiEqMIFGM4VDLBYAYdNLc" crossorigin="anonymous">\
+    <script src="https://cdn.datatables.net/v/bm/jq-3.7.0/dt-2.2.2/datatables.min.js" integrity="sha384-SZXx6mFkCRJyGW8C8nsVaJpL1eMbIWwRRly7435CnZNwoIdr1QE2NpCihEcTIaM7" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/plug-ins/2.2.2/sorting/absolute.js"></script>
   </head>
   <body>
@@ -17,11 +17,11 @@
             <h1 class="text-2xl">Stats for the <span class="font-semibold">{{ team['Emoji'] }} {{ team['Location'] }} {{ team['Name'] }}</span> </h1>
         </div>
 
-        <table class="border-collapse table-auto" id="stats">
+        <table class="table" id="stats">
             <thead>
                 <tr>
                     <th>Pos</th>
-                    <th>Name</th>
+                    <th data-class-name="text-nowrap">Name</th>
                     <!-- <th>Team</th> -->
 
                     {% for d in stat_defs %}

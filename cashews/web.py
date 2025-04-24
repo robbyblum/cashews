@@ -376,16 +376,16 @@ async def stats(request: Request, team_id: str):
             return "text-red-800"
         if stddev_diffs < -1.5:
             # -2.5 to -1.5
-            return "text-red-600"
+            return "text-red-700"
         if stddev_diffs < -0.5:
             # -1.5 to -0.5
-            return "text-orange-600"
+            return "text-orange-700"
         if stddev_diffs < 0.5:
             # -0.5 to 0.5
-            return "text-yellow-600"
+            return "text-yellow-700"
         if stddev_diffs < 1.5:
             # 0.5 to 1.5
-            return "text-green-600"
+            return "text-green-700"
         # 1.5 or above
         return "text-green-800"
 
