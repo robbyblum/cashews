@@ -1,14 +1,44 @@
 services:
   web:
-    build: .
-    ports:
-    - 127.0.0.1:3000:80
-    volumes:
-      - ./data:/app/data
-  tasks:
-    build: .
-    volumes:
-      - ./data:/app/data
+    build:
+      context: web/
+      dockerfile: Dockerfile
     environment:
-      - MAPS_API_KEY=${MAPS_API_KEY}
-    command: ["uv", "run", "python", "-m", "cashews.tasks"]
+      - API_BASE=http://api:3001
+    restart: unless-stopped
+    ports:
+    - 127.0.0.1:3000:3000
+  api:
+    build: .
+    entrypoint: ["/app/chron-api"]
+    environment:
+      - CHRON_DATABASE_URI=postgres://postgres:password@postgres:5432/postgres
+    volumes:
+      - ./config.toml:/app/config.toml
+    restart: unless-stopped
+    ports:
+    - 127.0.0.1:3001:3001
+  ingest:
+    build: .
+    entrypoint: ["/app/chron-ingest"]
+    volumes:
+      - ./mnt:/mnt
+      - ./config.toml:/app/config.toml
+    restart: unless-stopped
+    environment:
+      - CHRON_MAPS_API_KEY=${CHRON_MAPS_API_KEY}
+      - CHRON_JITTER=true
+      - CHRON_DATABASE_URI=postgres://postgres:password@postgres:5432/postgres
+  postgres:
+    image: postgres:17-alpine 
+    environment:
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:5432:5432
+    command: ["-c", "shared_buffers=4GB", "-c", "max_connections=250", "-c", "maintenance_work_mem=4GB", "-c", "work_mem=1GB", "-c", "wal_buffers=16MB"]
+    shm_size: 1G
+volumes:
+  postgres_db:

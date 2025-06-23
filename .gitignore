@@ -1,7 +1,7 @@
 sync.sh
 __pycache__
 .venv/
-data/
+/data/
 .env
 .idea
 *.png
@@ -9,3 +9,7 @@ data/
 .ipynb_checkpoints/
 http_cache
 script.py
+mnt/
+target/
+.idea/
+web_old/

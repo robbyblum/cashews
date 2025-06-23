@@ -1,5 +1,9 @@
-data/
+/data/
 .venv/
 __pycache__
 .env
 http_cache
+mnt/
+target/
+
+web/

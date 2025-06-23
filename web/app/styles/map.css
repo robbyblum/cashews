@@ -1,0 +1,13 @@
+@import url("/node_modules/leaflet/dist/leaflet.css");
+
+.cashews-map .emoji {
+    text-align: center;
+}
+.cashews-map .emoji span {
+    font-size: 20pt;
+    display: inline-block;
+}
+
+.cashews-map .popup {
+    text-align: center;
+}

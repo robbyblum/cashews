@@ -1,0 +1,1 @@
+create table locations(loc text primary key, data jsonb);
