@@ -150,8 +150,14 @@ export async function getLeagueAggregates(
   const resp = await fetch(
     API_BASE + `/league-aggregate-stats?season=${season}`
   );
-  // const data = (await resp.json()) as PercentileResponse;
-  return (await resp.json()) as PercentileResponse;
+  if (resp.status == 200) {
+    return (await resp.json()) as PercentileResponse;
+  } else {
+    const resp2 = await fetch(
+        API_BASE + `/league-aggregate-stats?season=${season-1}`
+    );
+    return (await resp2.json()) as PercentileResponse;
+  }
 }
 
 export async function getLeagueAverages(

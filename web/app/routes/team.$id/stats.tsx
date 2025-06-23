@@ -105,7 +105,7 @@ function RouteComponent() {
   const { season } = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
 
-  const seasons = [1, 0];
+  const seasons = [2, 1, 0];
 
   const [display, setDisplay] = useState<StatDisplay>("stat");
   const scale = defaultScale;
